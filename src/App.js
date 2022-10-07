@@ -20,7 +20,6 @@ function App() {
                     <h3>SELECT ONLY ONE</h3>
                     <form action={handlerSubmit}>
 
-
                         <input type="radio" id="var1" name="radio-group"/>
                         <label htmlFor="var1">Variant 1</label>
 
