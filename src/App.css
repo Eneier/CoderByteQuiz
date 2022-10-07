@@ -42,6 +42,12 @@ h3 {
     align-self: center;
 }
 
+.result {
+    font-size: 1.5rem;
+    font-weight: bold;
+    align-self: center;
+}
+
 
 body {
     font-family: Roboto, Oxygen, Fira Sans, Helvetica Neue, sans-serif;
@@ -60,6 +66,7 @@ body {
     border: 1px solid #6CA798;
     border-radius: 5px;
     color: #ffffff;
+    cursor: pointer;
 }
 
 .nav {
@@ -74,7 +81,6 @@ body {
     align-self: center;
 }
 
-
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
     position: absolute;
@@ -87,7 +93,6 @@ body {
     cursor: pointer;
     line-height: 20px;
     display: flex;
-    color: #666;
     background-color: #6CA798;
     margin: 10px;
     padding: 20px;
@@ -131,3 +136,4 @@ body {
     -webkit-transform: scale(1);
     transform: scale(1);
 }
+

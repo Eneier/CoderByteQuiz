@@ -1,40 +1,54 @@
 import './App.css';
+import Quiz from "./components/Quiz";
+import Result from "./components/Result";
+import questions from './store/state'
+import {useState} from "react";
 
 function App() {
 
-    const handlerSubmit = (e) => {
-        e.preventDefault()
+    const [step, setStep] = useState(0)
+    const [correct, setCorrect] = useState(0)
+    const [title, setTitle] = useState(Object.keys(questions).length - 1)
+    const [question, setQuestion] = useState(questions.quiz1[step])
+
+    const nextQuizHandler = () => {
+        if (title < Object.keys(questions).length)
+                    setTitle(prev => prev + 1)
+                else  {
+                    alert('There is no quiz anymore')
+                }
+                setQuestion(questions.quiz2[step])
+        setCorrect(0)
+        setStep(0)
+    }
+
+    const onCLickVariant = (index) => {
+        console.log(step, index)
+        setStep(step + 1)
+        if (title == 1) {
+            setQuestion(questions.quiz1[step + 1])
+        } else setQuestion(questions.quiz2[step + 1])
+        if (index === question.correct) {
+            setCorrect(correct + 1)
+        }
     }
 
     return (
-        <div className="container">
-            <div className="nav">
-                <div className="title">Quiz number #1</div>
-                <button className="btn primary">Next</button>
-            </div>
-            <div className="card">
-                <div className="item1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi dolorum
-                    ducimus ex libero magni natus repellat sit temporibus vitae?
-                </div>
-                <div className="variants">
-                    <h3>SELECT ONLY ONE</h3>
-                    <form action={handlerSubmit}>
-
-                        <input type="radio" id="var1" name="radio-group"/>
-                        <label htmlFor="var1">Variant 1</label>
-
-                        <input type="radio" id="var2" name="radio-group"/>
-                        <label htmlFor="var2">Variant 2</label>
-
-                        <input type="radio" id="var3" name="radio-group"/>
-                        <label htmlFor="var3">Variant 3</label>
-
-                        <input type="radio" id="var4" name="radio-group"/>
-                        <label htmlFor="var4">Variant 4</label>
-                    </form>
-                </div>
-            </div>
+        <div>
+            {
+                step !== questions.quiz1.length ? <Quiz question={question}
+                                                        onCLickVariant={onCLickVariant}
+                                                        title={title}
+                                                        nextQuizHandler={nextQuizHandler}
+                    />
+                    :
+                     <Result correct={correct}
+                             title={title}
+                     />
+            }
         </div>
+
+
     );
 }
 
